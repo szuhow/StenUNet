@@ -7,7 +7,32 @@ from utils.util import *
 from pre_process.preprocess import preprocess
 from nnunetv2.inference.predict_from_raw_data import predict_from_raw_data as predict
 from post_process.remove_small_segments import remove_small_segments
+from PIL import Image
+import numpy as np
 
+def process_image(image_path, factor, output_path):
+    # Load the image
+    img = Image.open(image_path)
+    
+    # Convert the image to a numpy array
+    img_array = np.array(img)
+    
+    # Print all pixel values
+    # print(img_array)
+    
+    # Multiply the pixel values by the factor
+    img_array = img_array * factor
+    
+    # Ensure values stay within the valid range
+    img_array = np.clip(img_array, 0, 255).astype('uint8')
+    
+    # Convert the numpy array back to an image
+    img = Image.fromarray(img_array)
+    
+    # Save the image
+    img.save(output_path)
+
+# Usage
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
@@ -38,9 +63,12 @@ if __name__ == "__main__":
     print('--------------preprocessing done--------------')
     mkdir(args.o)
     print('--------------predicting--------------')
-    predict(list_of_lists_or_source_folder = preprocess_path, output_folder = args.o, model_training_output_dir = args.m, use_folds =[0], checkpoint_name=args.chk, num_processes_preprocessing=1, num_processes_segmentation_export=1,device = device)
+    predict(list_of_lists_or_source_folder = args.i, output_folder = args.o, model_training_output_dir = args.m, use_folds =[0], checkpoint_name=args.chk, num_processes_preprocessing=1, num_processes_segmentation_export=1,device = device)
     print('--------------postprocessing--------------')
     mkdir(args.p)
     remove_small_segments(args.o, args.p, threshold = args.t)
     print('--------------Done--------------')
+    for file_name in os.listdir(args.p):
+        process_image(os.path.join(args.p, file_name), 255, os.path.join(args.p, file_name))
+    
     
