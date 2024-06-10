@@ -43,7 +43,7 @@ The training folder structure is like this:
           │   ├── sten_0001.png
           │   ├── sten_0002.png
           │   ├── ...
-## Train
+## Train - optional
       python training_planning.py #Planning hyper_parameters
 
       CUDA_VISIBLE_DEVICES=0 python training.py 0
