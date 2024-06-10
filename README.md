@@ -54,7 +54,7 @@ The training folder structure is like this:
   
          python inference.py
 
-3.Shareing StenUnet's weight ([Google drive](https://drive.google.com/file/d/1BO4whry0i50h_yzqQwUw1k7QyyLUk2U3/view?usp=sharing)).   
+3. Shareing StenUnet's weight ([Google drive](https://drive.google.com/file/d/1BO4whry0i50h_yzqQwUw1k7QyyLUk2U3/view?usp=sharing)) - put file in ./model_folder directory.
 4. You will get the preprocessed images, raw prediction after StenUNet, and post_prediction after postprocessing.
 
 You can integrate your own preprocessing/postprocessing strategies in [preprocess.py](pre_process/preprocess.py)/[post_process](post_process/remove_small_segments.py)
