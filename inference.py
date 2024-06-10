@@ -37,7 +37,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument('-m', type=str, required=False, default='./model_folder', help = 'model folder')
-    parser.add_argument('-chk', type=str, required=True, default='./model_folder/model_final.pth',help = 'checkpoint name, put in the model folder')
+    parser.add_argument('-chk', type=str, required=False, default='./model_folder/model_final.pth',help = 'checkpoint name, put in the model folder')
     
     parser.add_argument('-i', type=str, required=False, default='./dataset_test/raw/', help = 'Folder in which the raw test images are')
     parser.add_argument('-o', type=str, required=False, default='./dataset_test/raw_prediction/', help = 'Folder in which the raw predictions are')

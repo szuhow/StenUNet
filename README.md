@@ -7,7 +7,7 @@ Our publication:  StenUNet: Automatic Stenosis Detection from X-ray Coronary Ang
 Please refer to [MICCAI-ARCADE](https://github.com/NMHeartAI/MICCAI_ARCADE.git) for the segmentation detection task.
 
 
-## Installation
+## Installation - original
 python>=3.9 and torch>=2.0.0
 
       conda create -n stenunet_env python=3.9
@@ -15,7 +15,12 @@ python>=3.9 and torch>=2.0.0
       git clone https://github.com/HuiLin0220/StenUNet.git
       cd StenUNet
       pip install  -r ./requirements.txt
-
+## Installation - rsz
+      python -m venv env
+      source env/bin/activate
+      git clone https://github.com/szuhow/stenunet
+      cd StenUNet
+      pip install  -r ./requirements.txt
 ## Prepare data
 
 - Rename and put the training images in this folder "./nnNet_training/Raw_data/"
@@ -44,10 +49,10 @@ The training folder structure is like this:
       CUDA_VISIBLE_DEVICES=0 python training.py 0
       #CUDA_VISIBLE_DEVICES=X python train.py fold_ID(0,1,2,3,4)
 ## Inference
-- Rename and put the test images in this folder'./dataset_test/raw';
+1. If not properly named, do rename and put the test images in this folder'./dataset_test/raw';
 2. Run
   
-         python evaluation.py -chk MODEL_WEIGHTS_PATH;
+         python inference.py
 
 3.Shareing StenUnet's weight ([Google drive](https://drive.google.com/file/d/1BO4whry0i50h_yzqQwUw1k7QyyLUk2U3/view?usp=sharing)).   
 4. You will get the preprocessed images, raw prediction after StenUNet, and post_prediction after postprocessing.
@@ -79,7 +84,7 @@ The inference folder structure is like this:
           │   ├── sten_0001.png
           │   ├── ...
 ## References
-[nnunet](https://github.com/MIC-DKFZ/nnUNet)
+[nnunet](https://github.com/szuhow/stenunet)
 
 ## Citation
 Please cite the following paper when using SteUNet:
